@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2944715615759794193}
   - component: {fileID: 3421379884889344351}
   - component: {fileID: 7894220414778312752}
-  - component: {fileID: 2944715615589761665}
   m_Layer: 0
   m_Name: arthur_01
   m_TagString: Player
@@ -84,19 +83,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2944715615589761665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2944715615589761664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 268dd51ecc790ee43b24133ac99e9d50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 0}
 --- !u!1 &2944715615589761666
 GameObject:
   m_ObjectHideFlags: 0

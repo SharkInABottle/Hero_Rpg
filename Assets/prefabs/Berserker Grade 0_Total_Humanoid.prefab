@@ -2792,7 +2792,6 @@ GameObject:
   - component: {fileID: 50300873707501392}
   - component: {fileID: 50300873715013782}
   - component: {fileID: 6123964485939250685}
-  - component: {fileID: 7135456096704971886}
   m_Layer: 0
   m_Name: Berserker Grade 0_Total_Humanoid
   m_TagString: Untagged
@@ -2853,19 +2852,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1717327, y: 1.9848878, z: 1}
   m_Center: {x: 0.036712687, y: 0.9488673, z: 0}
---- !u!114 &7135456096704971886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 50300873707727664}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 268dd51ecc790ee43b24133ac99e9d50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 0}
 --- !u!1 &50300873707727666
 GameObject:
   m_ObjectHideFlags: 0
