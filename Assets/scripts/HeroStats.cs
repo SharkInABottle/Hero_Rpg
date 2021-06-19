@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HeroStats : MonoBehaviour
 {
     // Start is called before the first frame update
+    public Text hp, xp;
+    public Image hpBar, xpBar;
     public static bool collided=false;
     void Start()
     {
@@ -16,6 +19,7 @@ public class HeroStats : MonoBehaviour
     {
         
     }
+
     private void OnCollisionEnter(Collision collision)
     {   if(collision.collider.name!="Terrain") collided = true;
         
