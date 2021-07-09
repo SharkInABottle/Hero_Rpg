@@ -4,9 +4,10 @@ using UnityEngine.UI;
 public class itemStats : MonoBehaviour
 {
 
-    [SerializeField] Button item;
+    
     [SerializeField] GameObject inventoryContent;
     [SerializeField] Text empty;
+    public Button item;
 
     // Start is called before the first frame update
     void Start()

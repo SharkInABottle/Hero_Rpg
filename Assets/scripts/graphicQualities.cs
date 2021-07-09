@@ -10,7 +10,7 @@ public class graphicQualities : MonoBehaviour
     public void Verify()
     {
         int x = QualitySettings.GetQualityLevel();
-        Debug.Log(x.ToString());
+        
         switch (x)
         {
             case 0:

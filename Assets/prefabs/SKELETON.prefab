@@ -1226,6 +1226,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8116244357766465342}
   - component: {fileID: 8206067180190047578}
+  - component: {fileID: 4636789921996716141}
+  - component: {fileID: 6898235742345110294}
+  - component: {fileID: -3527543784409960861}
   m_Layer: 0
   m_Name: SKELETON
   m_TagString: Untagged
@@ -1268,6 +1271,52 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4636789921996716141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8121947144363456130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac83d904f7586af42b5849d4e2b38a77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroTest: {fileID: 5084514757964356912, guid: 0af493fc8f066a440b66377ad250ca50, type: 3}
+  moveSpeed: 10
+  attackSpeed: 2
+  timer: 0
+  attackDmg: 5
+--- !u!54 &6898235742345110294
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8121947144363456130}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!65 &-3527543784409960861
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8121947144363456130}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.002196, y: 6.651476, z: 2.6233509}
+  m_Center: {x: 0.013188601, y: 3.2551794, z: -0.24123645}
 --- !u!1 &8121968197947307142
 GameObject:
   m_ObjectHideFlags: 0

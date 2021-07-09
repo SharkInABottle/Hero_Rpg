@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class weaponStats : MonoBehaviour
 {
-    [SerializeField] Image itemStats;
-    [SerializeField] Text  atck;
+    
+    private Text  atck;
     [SerializeField] int attackPower;
     // Start is called before the first frame update
     void Start()
     {
+        
         
     }
 
@@ -19,9 +20,13 @@ public class weaponStats : MonoBehaviour
     {
         
     }
-    public void ItemStatsOn()
+    public void ItemStats()
     {
-        itemStats.gameObject.SetActive(true);
+
+        GameObject.Find("Canvas").GetComponent<UiGame>().ItemStatsOn();
+        GameObject.Find("itemStats").GetComponent<itemStats>().item = this.GetComponent<Button>();
+        atck = GameObject.Find("attackPower").GetComponent<Text>();
+        
         atck.text = "+" + attackPower.ToString();
     }
 }

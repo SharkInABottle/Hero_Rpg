@@ -6,6 +6,7 @@ public class UiGame : MonoBehaviour
     [SerializeField] Image equip, inventory, menu, itemStats;
     [SerializeField] GameObject inventoryContent;
     [SerializeField] Text empty;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,7 @@ public class UiGame : MonoBehaviour
                     menu.gameObject.SetActive(false);
 
                 }
-                
+
             }
         }
     }
@@ -47,6 +48,8 @@ public class UiGame : MonoBehaviour
         }
         else
         {
+            
+
             inventory.gameObject.SetActive(true);
             if (inventoryContent.transform.childCount > 0) empty.gameObject.SetActive(false);
             else empty.gameObject.SetActive(true);
@@ -59,5 +62,9 @@ public class UiGame : MonoBehaviour
             menu.gameObject.SetActive(false);
         }
         else menu.gameObject.SetActive(true);
+    }
+    public void ItemStatsOn()
+    {
+        itemStats.gameObject.SetActive(true);
     }
 }
