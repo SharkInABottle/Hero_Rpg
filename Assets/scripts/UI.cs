@@ -10,13 +10,14 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     public static string Hero { get; set; }
-    public static bool gender { get; set; }
-
-    [SerializeField] Button start, options, back, quit, choose, quitConfirm, back2, maleHero, backName, saveName,femaleHero;
-    [SerializeField] Image quitConf, optionMenu, namePanel,errorPanel;
-    [SerializeField] Camera mainCam, secondCam;
+    public static bool genderFemale { get; set; }
+    public Button start, options, back, quit, choose, quitConfirm, back2, maleHero, backName, saveName,femaleHero;
+    public Image quitConf, optionMenu, namePanel,errorPanel;
+    public Camera mainCam, secondCam;
     public Text heroNameInput,errorMsg;
-
+    public GameObject graphicsI, controlsI, soundI, profileI, supportI;
+    public Toggle musicOn;
+    public Slider musicVolume;
     private bool startGameBo;
     private Transform posCamStart;
     // Start is called before the first frame update
@@ -106,16 +107,17 @@ public class UI : MonoBehaviour
     }
     public void ChooseConfirmMale()
     {
-        gender = false;
+        genderFemale = false;
         SceneManager.LoadScene("GameScene");
     }
     public void ChooseConfirmFemale()
     {
-        gender = true;
+        genderFemale = true;
         SceneManager.LoadScene("GameScene");
     }
     public void Options()
     {
+        OptionsGphcs();
         optionMenu.gameObject.SetActive(true);
     }
     public void SaveName()
@@ -141,5 +143,55 @@ public class UI : MonoBehaviour
         errorPanel.gameObject.SetActive(true);
         errorMsg.text = x;
     }
+    public void OptionsGphcs()
+    {
+        graphicsI.SetActive(true);
+        controlsI.SetActive(false);
+        soundI.SetActive(false);
+        profileI.SetActive(false);
+        supportI.SetActive(false);
 
+    }
+    public void OptionsCtrls()
+    {
+        graphicsI.SetActive(false);
+        controlsI.SetActive(true);
+        soundI.SetActive(false);
+        profileI.SetActive(false);
+        supportI.SetActive(false);
+    }
+    public void OptionsSound()
+    {
+        graphicsI.SetActive(false);
+        controlsI.SetActive(false);
+        soundI.SetActive(true);
+        profileI.SetActive(false);
+        supportI.SetActive(false);
+    }
+    public void OptionsProfile()
+    {
+        graphicsI.SetActive(false);
+        controlsI.SetActive(false);
+        soundI.SetActive(false);
+        profileI.SetActive(true);
+        supportI.SetActive(false);
+    }
+    public void OptionsSupport()
+    {
+        graphicsI.SetActive(false);
+        controlsI.SetActive(false);
+        soundI.SetActive(false);
+        profileI.SetActive(false);
+        supportI.SetActive(true);
+    }
+    public void SoundVolume()
+    {
+        PlayerPrefs.SetFloat("SoundVolume", musicVolume.value);
+    }
+    public void MusicOn()
+    {
+        if (musicOn.enabled)
+            PlayerPrefs.SetInt("musicOn", 1);
+        else PlayerPrefs.SetInt("musicOn", 0);
+    }
 }

@@ -3,10 +3,11 @@ using UnityEngine.UI;
 
 public class UiGame : MonoBehaviour
 {
-    [SerializeField] Image equip, inventory, menu, itemStats;
-    [SerializeField] GameObject inventoryContent;
-    [SerializeField] Text empty;
-    
+    public Image equip, inventory, menu, itemStats;
+    public GameObject inventoryContent, soundI, supportI;
+    public Text empty;
+    public Slider musicVolume;
+    public Toggle musicOn;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +49,7 @@ public class UiGame : MonoBehaviour
         }
         else
         {
-            
+
 
             inventory.gameObject.SetActive(true);
             if (inventoryContent.transform.childCount > 0) empty.gameObject.SetActive(false);
@@ -61,10 +62,36 @@ public class UiGame : MonoBehaviour
         {
             menu.gameObject.SetActive(false);
         }
-        else menu.gameObject.SetActive(true);
+        else
+        {
+            menu.gameObject.SetActive(true);
+            OptionsSound();
+        }
     }
     public void ItemStatsOn()
     {
         itemStats.gameObject.SetActive(true);
     }
+    public void OptionsSupport()
+    {
+        soundI.SetActive(false);
+        supportI.SetActive(true);
+    }
+    public void OptionsSound()
+    {
+        soundI.SetActive(true);
+        supportI.SetActive(false);
+    }
+    public void SoundVolume()
+    {
+        PlayerPrefs.SetFloat("SoundVolume", musicVolume.value);
+    }
+    public void MusicOn()
+    {
+        if (musicOn.enabled)
+            PlayerPrefs.SetInt("musicOn", 1);
+        else PlayerPrefs.SetInt("musicOn", 0);
+    }
+
+
 }

@@ -4,12 +4,13 @@ using UnityEngine.UI;
 
 public class PlayerInput : MonoBehaviour
 {
+    public float moveSpeed = 10;
     [SerializeField] GameObject touchPadPanel, followCam;
     private Animator hero;
     private float width, height, x1, y1, x2, y2, timer, r1 = 0, r2 = 0;
     private int touchPadId, freeLookId;
     private Rigidbody heroBody;
-    public Text testing;
+
     private Vector2 touchStart, touchEnd;
     [SerializeField] Button move;
 
@@ -25,25 +26,27 @@ public class PlayerInput : MonoBehaviour
         movePos = move.transform;
         touchPadPanelRect = touchPadPanel.GetComponent<RectTransform>();
         hero = this.GetComponent<Animator>();
+        this.transform.SetPositionAndRotation(new Vector3(PlayerPrefs.GetFloat("heroPosX", 237.00f), PlayerPrefs.GetFloat("heroPosy", 1.12f), PlayerPrefs.GetFloat("heroPosz", 283.4f)),
+                                         new Quaternion(PlayerPrefs.GetFloat("heroRotX", 0), PlayerPrefs.GetFloat("heroRotY", 157.0f), PlayerPrefs.GetFloat("heroRotZ", 0), 0));
 
     }
 
 
     private Touch touch;
-    private bool attackBool = false, moveBool = false, rotateCamBool = false, restartCamRotation;
+    public bool attackBool = false, moveBool = false, rotateCamBool = false, restartCamRotation;
     // Update is called once per frame
     void Update()
     {
 
 
-        
+
         if (Input.touchCount > 0) for (int i = 0; i < Input.touchCount; i++)
             {
                 touch = Input.GetTouch(i);
                 if (touch.phase == TouchPhase.Began)
                 {
                     touchStart = touch.position;
-                    if (touch.position.x <= (width / 2) && touch.position.y < height)
+                    if (touch.position.x <= (width / 4) && touch.position.y < (height / 2))
                     {
                         movePos.position = touch.position;
                         moveBool = true;
@@ -61,10 +64,10 @@ public class PlayerInput : MonoBehaviour
                     touchEnd = touch.position;
                     if (touchPadId == touch.fingerId)
                     {
-                        x1 = (touchEnd.x - touchStart.x) / (width /8);
+                        x1 = (touchEnd.x - touchStart.x) / (width / 8);
                         y1 = (touchEnd.y - touchStart.y) / (height / 4);
-                        /*if (touchEnd.x < touchPadPanelRect.rect.xMax * 2 && touchEnd.x > touchPadPanelRect.rect.xMin * 2 && touchEnd.y > touchPadPanelRect.rect.yMin * 2 && touchEnd.y < touchPadPanelRect.rect.yMax * 2)*/ 
-                        movePos.position = touchEnd;
+                        if (touchEnd.x < touchPadPanelRect.rect.xMax * 2 && touchEnd.x > touchPadPanelRect.rect.xMin * 2 && touchEnd.y > touchPadPanelRect.rect.yMin * 2 && touchEnd.y < touchPadPanelRect.rect.yMax * 2)
+                            movePos.position = touchEnd;
                     }
                     /*else if (freeLookId == touch.fingerId)
                     {
@@ -108,15 +111,16 @@ public class PlayerInput : MonoBehaviour
         if (x2 > 1) x2 = 1; else if (x2 < -1) x2 = -1;
         if (y2 > 1) y2 = 1; else if (y2 < -1) y2 = -1;
 #if UNITY_EDITOR
-    y1 = Input.GetAxis("Vertical");
-    x1 = Input.GetAxis("Horizontal");
+        y1 = Input.GetAxis("Vertical");
+        x1 = Input.GetAxis("Horizontal");
 #endif
-               
-        
-            testing.text = "x1= " + x1 + "\n x2= " + y1;
-            heroBody.MovePosition(transform.position + transform.forward * y1 * Time.deltaTime * 10);
-            heroBody.rotation *= Quaternion.AngleAxis(x1 * Time.deltaTime * 50, Vector3.up);
-        
+
+
+
+        heroBody.MovePosition(transform.position + transform.forward * y1 * Time.deltaTime * moveSpeed);
+        heroBody.rotation *= Quaternion.AngleAxis(x1 * Time.deltaTime * 50, Vector3.up);
+
+
         /*if (Input.GetKey(KeyCode.E)) r1 = 1; else r1 = 0;
         if (Input.GetKey(KeyCode.A)) r2 = 1; else r2 = 0;
         followCam.transform.rotation *= Quaternion.AngleAxis(x2 * 50 * Time.deltaTime, Vector3.up);
@@ -130,8 +134,10 @@ public class PlayerInput : MonoBehaviour
 
 
         timer += Time.deltaTime;
-        if (timer > 10) timer = 3;
-
+        if (timer > 10)
+        {
+            timer = 3; attackBool = false;
+        }
     }
     private void HeroWalk(float a)
     {
@@ -141,6 +147,13 @@ public class PlayerInput : MonoBehaviour
     }
     public void BackToMainMenu()
     {
+        
+        PlayerPrefs.SetFloat("heroPosX", transform.position.x);
+        PlayerPrefs.SetFloat("heroPosy", transform.position.y);
+        PlayerPrefs.SetFloat("heroPosz", transform.position.z);
+        PlayerPrefs.SetFloat("heroRotX", transform.rotation.x);
+        PlayerPrefs.SetFloat("heroRotY", transform.rotation.y);
+        PlayerPrefs.SetFloat("heroRotZ", transform.rotation.z);
         SceneManager.LoadScene("MenuScene");
     }
     public void Attack()
@@ -153,7 +166,5 @@ public class PlayerInput : MonoBehaviour
             attackBool = true;
             timer = 0;
         }
-        else attackBool = false;
-
     }
 }
